@@ -10,6 +10,10 @@ import Config
 config :stone_banking,
   ecto_repos: [StoneBanking.Repo]
 
+config :stone_banking, StoneBanking.Repo,
+  migration_primary_key: [type: :binary_id],
+  migration_foreing_key: [type: :binary_id]
+
 # Configures the endpoint
 config :stone_banking, StoneBankingWeb.Endpoint,
   url: [host: "localhost"],
