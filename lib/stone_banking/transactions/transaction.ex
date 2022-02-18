@@ -8,6 +8,10 @@ defmodule StoneBanking.Transactions.Transaction do
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
+
+  @transaction_type_transfer "transfer"
+  @transaction_type_withdraw "withdraw"
+
   schema "transactions" do
     field(:amount, :integer)
     field(:type, :string)
@@ -35,4 +39,7 @@ defmodule StoneBanking.Transactions.Transaction do
     |> validate_required(@required)
     |> validate_number(:amount, greater_than_or_equal_to: 1)
   end
+
+  def get_transaction_type_transfer(), do: @transaction_type_transfer
+  def get_transaction_type_withdraw(), do: @transaction_type_withdraw
 end

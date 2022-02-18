@@ -8,8 +8,8 @@ import Config
 config :stone_banking, StoneBanking.Repo,
   username: "postgres",
   password: "postgres",
-  hostname: "localhost",
-  database: "stone_banking_test#{System.get_env("MIX_TEST_PARTITION")}",
+  hostname: "db",
+  database: "stone_banking_test",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
