@@ -2,7 +2,6 @@ defmodule StoneBanking.Users.User do
   use Ecto.Schema
   import Ecto.Changeset
   import StoneBanking.Changesets
-  alias StoneBanking.Accounts.Account
 
   @required [:name, :email, :password_hash]
 
