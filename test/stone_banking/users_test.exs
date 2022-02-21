@@ -21,16 +21,13 @@ defmodule StoneBanking.UsersTest do
     end
 
     test "create_user/1" do
-      user =
-        Users.create_user(%{
-          email: "assisneto@assis.com",
-          name: "Assis",
-          password_hash: "asdasdasd"
-        })
+      params = %{
+        email: "assisneto@assis.com",
+        name: "Assis",
+        password_hash: "asdasdasd"
+      }
 
-      assert user.id
-      assert Map.has_key?(user, :account)
-      assert user.account.balance == 1000
+      {:ok, %User{}} = Users.create_user(params)
     end
   end
 end
