@@ -8,7 +8,7 @@ defmodule StoneBanking.Utils.Factory do
       User.changeset(%{
         email: "assisneto#{System.unique_integer([:positive])}@assis.com",
         name: "Assis",
-        password_hash: "asdasdasd"
+        password: "asdasdasd"
       })
       |> Repo.insert()
 

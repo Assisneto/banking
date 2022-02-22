@@ -2,8 +2,9 @@ defmodule StoneBanking.Users.User do
   use Ecto.Schema
   import Ecto.Changeset
   import StoneBanking.Changesets
+  alias StoneBanking.Accounts.Account
 
-  @required [:name, :email, :password_hash]
+  @required [:name, :email, :password]
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
@@ -12,8 +13,8 @@ defmodule StoneBanking.Users.User do
   schema "users" do
     field(:name, :string)
     field(:email, :string)
-    field(:password_hash, :string)
-
+    field :password, :string, virtual: true
+    field :password_hash, :string
     has_one(:account, Account)
 
     timestamps()
@@ -26,5 +27,13 @@ defmodule StoneBanking.Users.User do
     |> validate_length(:name, min: 2)
     |> validate_email(:email)
     |> unique_constraint([:email])
+    |> put_password_hash()
   end
+
+  defp put_password_hash(
+         %Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset
+       ),
+       do: change(changeset, Bcrypt.add_hash(password))
+
+  defp put_password_hash(changeset), do: changeset
 end
