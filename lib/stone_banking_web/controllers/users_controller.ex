@@ -11,6 +11,7 @@ defmodule StoneBankingWeb.UsersController do
 
   def format_user({:ok, %User{} = user}),
     do: %{
+      id: user.id,
       name: user.name,
       email: user.email
     }

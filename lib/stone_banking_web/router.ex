@@ -8,7 +8,6 @@ defmodule StoneBankingWeb.Router do
   scope "/api", StoneBankingWeb do
     pipe_through :api
 
-    get "/", PageController, :index
     post "/users", UsersController, :create
   end
 end
